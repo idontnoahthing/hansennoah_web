@@ -5,23 +5,28 @@
   padding: 0;
 }
 
+html  {
+  background-image: url(../images/backgrounds/controller_back.jpeg);
+  background-repeat: repeat;
+  background-size: 20%;
+}
+
 body {
   font-family: Arial, sans-serif;
   font-size: 16px;
   line-height: 1.5;
   color: white;
-  background-image: url(../images/backgrounds/controller_back);
-  background-repeat: repeat-x;
-  background-size: 100%;
 }
 
 header {
   background-color: #fff;
-  color: #333;
+  color: #fff;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 0;
   z-index: 999;
+  /* background-image: url(../images/backgrounds/controller_back.jpeg); */
+  /* background-size: 20%; */
 }
 
 nav {
@@ -43,7 +48,7 @@ nav ul li {
 }
 
 nav ul li a {
-  color: white;
+  color: #333;
   text-decoration: none;
   transition: all 0.3s ease-in-out;
 }
@@ -68,7 +73,8 @@ h1 {
 h2 {
   font-size: 24px;
   font-weight: bold;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 3px black;
 }
 
 p {
@@ -92,13 +98,25 @@ p {
   background-color: #005580;
 }
 
-/* Project section styles */
+/* About section -------------------------------------------- */
+
+section#about p {
+  background-color: rgba(0, 0, 0, 60%);
+  border-radius: 30px;
+  padding: 50px;
+}
+
+/* Project section styles ------------------------------------*/
 .project {
   margin-bottom: 50px;
+  background-color: rgba(0, 0, 0, 60%);
+  border-radius: 30px;
+  padding: 50px;
 }
 
 .project img {
   max-width: 100%;
+  float: right;
   height: auto;
   margin-bottom: 20px;
 }
@@ -108,7 +126,9 @@ p {
   margin-bottom: 10px;
 }
 
-/* Contact section styles */
+
+/* Contact section styles ------------------------------------*/
+
 form {
   max-width: 500px;
   margin: 0 auto;
@@ -149,4 +169,12 @@ button[type="submit"] {
 
 button[type="submit"]:hover {
   background-color: #005580;
+}
+
+footer {
+  text-align: center;
+  margin: auto 0;
+  /* padding-bottom: 10px; */
+  color: #333;
+  background-color: #fff;
 }
