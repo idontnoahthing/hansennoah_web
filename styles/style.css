@@ -121,6 +121,14 @@ section#about p {
   margin-bottom: 20px;
 }
 
+.project img#weberState {
+  width: 25%;
+}
+
+.project p {
+  width: 75%;
+}
+
 .project h3 {
   font-size: 24px;
   margin-bottom: 10px;
