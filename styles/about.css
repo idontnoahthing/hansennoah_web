@@ -1,0 +1,32 @@
+@charset "utf-8";
+
+/* ROW 1 STYLE */
+
+div#row_1 {
+    width: 100%;
+    margin: 50px 0;
+    display: flex;
+    align-items: flex-start;
+    align-content: center;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+/* photo style */
+
+img#me_and_ry {
+    margin: 0;
+    max-width: 30%;
+    min-width: 300px;    
+}
+
+section#about {
+    margin: 0;
+    clear: none;
+    width: 50%;
+    min-width: 300px;
+}
+
+section {
+    clear: both;
+}

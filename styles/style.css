@@ -1,3 +1,4 @@
+@charset "utf-8";
 /* 
 colors:
 blue: #293F94
@@ -22,7 +23,7 @@ html  {
 }
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: "roboto", sans-serif;
   font-size: 16px;
   line-height: 1.5;
 }
@@ -49,7 +50,7 @@ header {
   z-index: 999;
 }
 
-nav {
+/* nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -66,12 +67,13 @@ nav img {
 
 nav ul {
   display: flex;
+  align-items: flex-start;
   padding-right: 20px;
 }
 
 nav ul li {
   list-style: none;
-  margin: 0 20px;
+  padding: 0 20px;
 }
 
 nav ul li a {
@@ -87,16 +89,16 @@ nav ul li a {
 
 nav ul li a:hover {
   color: #0088cc;
-}
+} */
 
-/* Website Banner */
+/* Website Banner ------------------------------------------------------------*/
 
 img#banner {
   width: 100%;
   margin: 0;
 }
 
-/* Main article section */
+/* Main article section ------------------------------------------------------*/
 
 div#pageContent {
   margin-left: 20px;
@@ -142,7 +144,7 @@ footer p {
   background-color: black;
 }
 
-/* BUTTON STYLES -------------------------------------------- */
+/* BUTTON STYLES -------------------------------------------------------------*/
 
 .btn, button[type="submit"] {
   line-height: 1.5;
