@@ -26,17 +26,27 @@
     <div id="pageContent">
       
       <section id="intro">
-        <h2>Welcome!</h2>
+        <h2>Want to chat?</h2>
         <p>
-          My name is Noah Hansen, and I'm a Computer Science student at Weber State University.
-          As an aspiring software developer, I have a passion for creating innovative solutions to real-world problems.
-          This website serves as a side project and portfolio for my work,
-          where I showcase my skills and projects that I have developed.
-          Whether you're here to learn more about me or to explore my projects, 
-          I hope that you find my website informative and helpful. Thank you for visiting!
+          If you need to get in touch with me feel free to complete the form below and I'll get back to you as soon as possible!
           </p>
       </section>
-
+     
+      <section id="contact">
+        <h2>Contact Me</h2>
+        <form>
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required>
+  
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+  
+          <label for="message">Message</label>
+          <textarea id="message" name="message" required></textarea>
+  
+          <button type="submit" class="btn">Send Message</button>
+        </form>
+      </section>
     </div>
   
     <footer>

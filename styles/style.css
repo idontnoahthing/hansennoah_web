@@ -27,10 +27,16 @@ body {
   line-height: 1.5;
 }
 
-div#pageContent {
-  margin-left: 20px;
-  margin-right: 20px;
+/* Fonts Set Here ----------------------------------------- */
+
+p, footer p, .btn, button[type="submit"], label {
+  font-family: "roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 16px;
 }
+
+/* Main Page */
 
 header {
   background-color: #fff;
@@ -83,15 +89,24 @@ nav ul li a:hover {
   color: #0088cc;
 }
 
-section {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 50px 0;
-}
+/* Website Banner */
 
 img#banner {
   width: 100%;
   margin: 0;
+}
+
+/* Main article section */
+
+div#pageContent {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+section {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 50px 0;
 }
 
 h1 {
@@ -111,19 +126,26 @@ h2 {
   font-size: 32px;
   font-weight: bold;
   margin-bottom: 20px;
-  /* text-shadow: 2px 2px 3px black; */
 }
 
 p {
-  font-family: "roboto", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  font-size: 16px;
   line-height: 1.5;
   margin-bottom: 20px;
 }
 
-.btn {
+footer p {
+  text-align: center;
+  margin: auto 0;
+  width: 100%;
+  padding: 5px;
+  color: white;
+  background-color: black;
+}
+
+/* BUTTON STYLES -------------------------------------------- */
+
+.btn, button[type="submit"] {
+  line-height: 1.5;
   display: inline-block;
   padding: 10px 20px;
   border: none;
@@ -134,20 +156,20 @@ p {
   transition: all 0.3s ease-in-out;
 }
 
-.btn:hover {
+.btn:hover, button[type="submit"]:hover {
   background-color: #293F94;
 }
 
-/* About section -------------------------------------------- */
+/* Section styles-------------------------------------------- */
 
-section#about {
+section {
   background-color: #D1D3D4;
   padding: 50px;
   margin-top: 50px;
   margin-bottom: 50px;
 }
 
-section#about p {
+section p {
   text-indent: 5%;
 }
 
@@ -155,26 +177,10 @@ section#about p {
 
 section#projects {
   background-color: #D1D3D4;
-  padding: 50px;
 }
 
 .project {
   margin-bottom: 50px;
-}
-
-.project img {
-  max-width: 100%;
-  float: right;
-  height: auto;
-  margin-bottom: 20px;
-}
-
-.project img#weberState {
-  width: 25%;
-}
-
-.project p {
-  width: 75%;
 }
 
 .project h3 {
@@ -182,8 +188,36 @@ section#projects {
   margin-bottom: 10px;
 }
 
+.project p {
+  width: 75%;
+}
+
+.project figure {
+  display: block;
+  float: right;
+  width: 25%;
+  margin-bottom: 20px;
+}
+
+.project figure img {
+  width: 100%;
+  float: right;
+}
+
+.project figcaption {
+  float: right;
+  font-size: .5em;
+  text-align: center;
+}
+
 
 /* Contact section styles ------------------------------------*/
+
+section#contact {
+  background-color: transparent;
+  text-indent: 0;
+  padding: 0;
+}
 
 form {
   max-width: 500px;
@@ -193,10 +227,6 @@ form {
 label {
   display: block;
   margin-bottom: 10px;
-  font-family: "roboto", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  font-size: 16px;
 }
 
 input,
@@ -214,34 +244,4 @@ input:focus,
 textarea:focus {
   outline: none;
   border-color: #459F55;
-}
-
-button[type="submit"] {
-  font-family: "roboto", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  font-size: 16px;
-  line-height: 1.5;
-  display: inline-block;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 30px;
-  background-color: #DA3832;
-  color: white;
-  text-decoration: none;
-  transition: all 0.3s ease-in-out;
-}
-
-button[type="submit"]:hover {
-  background-color: #293F94;
-}
-
-footer p {
-  font-family: "roboto", sans-serif;
-  text-align: center;
-  margin: auto 0;
-  width: 100%;
-  padding: 5px;
-  color: white;
-  background-color: black;
 }
