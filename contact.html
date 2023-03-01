@@ -36,7 +36,7 @@
      
       <section id="contact">
         <h2>Contact Me</h2>
-        <form>
+        <form action="http://icarus.cs.weber.edu/~linda/cs2350/submit_pet1.php" method="post">
           <label for="name">Name</label>
           <input type="text" id="name" name="name" required>
   
@@ -46,7 +46,8 @@
           <label for="message">Message</label>
           <textarea id="message" name="message" required></textarea>
   
-          <button type="submit" class="btn">Send Message</button>
+          <button type="reset" name="reset" class="btn">Clear</button>
+          <button type="submit" name="submit" class="btn">Send Message</button>
         </form>
       </section>
     </div>

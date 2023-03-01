@@ -30,12 +30,40 @@ body {
 
 /* Fonts Set Here ----------------------------------------- */
 
+h1 {
+  font-family: apotek-extracond, sans-serif;
+  font-weight: 800;
+  font-style: normal;
+  font-size: 48px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+h2 {
+  font-family: "armada-condensed", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+h3 {
+  font-family: "roboto", sans-serif;
+  font-weight: 500;
+  font-style: italic;
+  margin-bottom: 15px;
+}
+
 p, footer p, .btn, button[type="submit"], label {
   font-family: "roboto", sans-serif;
   font-weight: 400;
   font-style: normal;
   font-size: 16px;
 }
+
+
 
 /* Main Page */
 
@@ -89,7 +117,7 @@ nav ul li a {
   font-family: "armada-condensed", sans-serif;
   font-weight: 700;
   font-style: normal;
-  font-size: 1em;
+  font-size: 1.15em;
   font-weight: bold;
   text-decoration: none;
   vertical-align: middle;
@@ -118,25 +146,6 @@ section {
   max-width: 800px;
   margin: 0 auto;
   padding: 50px 0;
-}
-
-h1 {
-  font-family: apotek-extracond, sans-serif;
-  font-weight: 800;
-  font-style: normal;
-  font-size: 48px;
-  font-weight: bold;
-  margin-bottom: 10px;
-  text-align: center;
-}
-
-h2 {
-  font-family: "armada-condensed", sans-serif;
-  font-weight: 700;
-  font-style: normal;
-  font-size: 32px;
-  font-weight: bold;
-  margin-bottom: 20px;
 }
 
 p {
@@ -207,7 +216,7 @@ section#projects {
   display: block;
   float: right;
   width: 25%;
-  margin-bottom: 20px;
+  margin: 15px;
 }
 
 .project figure img {
@@ -216,8 +225,9 @@ section#projects {
 }
 
 .project figcaption {
-  float: right;
-  font-size: .5em;
+  /* float: right; */
+  padding-top: 10px;
+  font-size: .55em;
   text-align: center;
 }
 
@@ -255,4 +265,59 @@ input:focus,
 textarea:focus {
   outline: none;
   border-color: #459F55;
+}
+
+/* LINK SECTION STYLES ----------------------------------------------------- */
+
+/* 
+colors:
+blue: #293F94
+yellow: #FDDF4F
+green: #459F55
+red: #DA3832
+grey: #D1D3D4
+black
+white
+*/
+
+section#links h2 {
+  text-align: center;
+}
+
+section#links div {
+  text-align: center;
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+section#links div a {
+  width: 30%;
+}
+
+section#links div a#aboutBtn {
+  background-color: #459F55;
+}
+
+section#links div a#projectBtn {
+  background-color: #DA3832;
+}
+
+section#links div a#contactBtn {
+  background-color: #293F94;
+}
+
+section#links div a#aboutBtn:hover {
+  box-shadow: black -2px -2px 5px, black 2px 2px 5px;
+  width: 31%;
+}
+
+section#links div a#projectBtn:hover {
+  box-shadow: black -2px -2px 5px, black 2px 2px 5px;
+  width: 31%;
+}
+
+section#links div a#contactBtn:hover {
+  box-shadow: black -2px -2px 5px, black 2px 2px 5px;
+  width: 31%;
 }
