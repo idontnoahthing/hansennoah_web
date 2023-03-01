@@ -50,30 +50,38 @@ header {
   z-index: 999;
 }
 
-/* nav {
+nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0 auto;
-  padding: 20px 0;
+  margin: 0;
+  padding: 20px 20px;
+  max-height: 1em;
 }
 
-nav img {
+nav div#icon {
+  max-width: 25%;
+}
+
+img {
+  width: 25%;
   display: flex;
-  max-width: 150px;
-  float: left;
-  padding-left: 20px;
+  align-self: center;
 }
 
 nav ul {
   display: flex;
-  align-items: flex-start;
-  padding-right: 20px;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 75%;
 }
 
 nav ul li {
+  display: flex;
+  width: 25%;
+  justify-self: flex-end;
   list-style: none;
-  padding: 0 20px;
 }
 
 nav ul li a {
@@ -81,15 +89,16 @@ nav ul li a {
   font-family: "armada-condensed", sans-serif;
   font-weight: 700;
   font-style: normal;
-  font-size: 1.25em;
+  font-size: 1em;
   font-weight: bold;
   text-decoration: none;
+  vertical-align: middle;
   transition: all 0.3s ease-in-out;
 }
 
 nav ul li a:hover {
   color: #0088cc;
-} */
+}
 
 /* Website Banner ------------------------------------------------------------*/
 
