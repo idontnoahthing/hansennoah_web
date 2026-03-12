@@ -1,59 +1,615 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Noah Hansen | Portfolio</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="styles/style.css">
-    <link rel="stylesheet" href="https://use.typekit.net/ytu6bqr.css">
-    <link rel="icon" type="images/x-icon" href="images/icon.png">
-  </head>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Noah Hansen | Sysadmin</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&display=swap');
 
-  <body>
-    <header>
-      <nav>
-        <div id="icon">
-          <a href="index.html"><img src="images/noah-03.png" alt="icon" ></a>
-        </div>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="projects.html">Projects</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </nav>
-    </header>
+  :root {
+    --cyan: #00e5ff;
+    --cyan-dim: #00b8cc;
+    --cyan-glow: rgba(0,229,255,0.15);
+    --bg: #0a0e0f;
+    --bg2: #0f1517;
+    --bg3: #141c1e;
+    --text: #c8d8db;
+    --text-dim: #6a8a90;
+    --border: rgba(0,229,255,0.2);
+  }
 
-    <img src="images/backgrounds/noah_banner.jpeg" alt="background" id="banner">
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
 
-    <div id="pageContent">
-      
-      <section id="intro">
-        <h2>Welcome!</h2>
-        <p>
-          My name is Noah Hansen, and I'm a Cyber Security student at Western Governors University.
-          As an aspiring Analyst, I have a passion for creating innovative solutions to real-world problems.
-          This website serves as a side project and portfolio for my work,
-          where I showcase my skills and projects that I have developed.
-          Whether you're here to learn more about me or to explore my projects, 
-          I hope that you find my website informative and helpful. Thank you for visiting!
-          </p>
-      </section>
+  body {
+    font-family: 'JetBrains Mono', monospace;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
 
-      <section id="links">
-        <h2>Ready to Learn more about me?</h2>
-        <div>
-          <a href="about.html" id="aboutBtn" class="btn">About Me</a>
-          <a href="projects.html" id="projectBtn" class="btn">Projects</a>
-          <a href="contact.html" id="contactBtn" class="btn">Contact Me</a>
-        </div>
-      </section>
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);
+    pointer-events: none;
+    z-index: 999;
+  }
 
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: rgba(10,14,15,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 1.5rem;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 100;
+  }
+
+  .nav-logo {
+    color: var(--cyan);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 1.75rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--cyan); }
+
+  /* HAMBURGER */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+    background: none;
+    border: none;
+  }
+  .hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--cyan);
+    transition: all 0.3s;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* MOBILE MENU */
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 56px; left: 0; right: 0;
+    background: rgba(10,14,15,0.98);
+    border-bottom: 1px solid var(--border);
+    padding: 1.5rem;
+    flex-direction: column;
+    gap: 1.25rem;
+    z-index: 99;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    transition: color 0.2s;
+    padding: 0.25rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .mobile-menu a:hover { color: var(--cyan); }
+
+  /* SECTIONS */
+  section {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 5rem 1.5rem 3.5rem;
+  }
+
+  .section-label {
+    color: var(--cyan);
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+    opacity: 0.8;
+  }
+  .section-label::before { content: '> '; }
+
+  h2 {
+    font-size: clamp(1.2rem, 4vw, 1.6rem);
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 2rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 56px;
+  }
+
+  .hero-pre {
+    color: var(--cyan);
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    margin-bottom: 1rem;
+    opacity: 0.8;
+  }
+
+  .hero-name {
+    font-size: clamp(2rem, 8vw, 4rem);
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-title {
+    font-size: clamp(0.85rem, 2.5vw, 1.3rem);
+    color: var(--cyan);
+    margin-bottom: 1.5rem;
+    min-height: 1.8rem;
+  }
+
+  .cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1em;
+    background: var(--cyan);
+    margin-left: 2px;
+    vertical-align: text-bottom;
+    animation: blink 1s step-end infinite;
+  }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+  .hero-bio {
+    max-width: 560px;
+    color: var(--text-dim);
+    font-size: clamp(0.78rem, 2vw, 0.88rem);
+    line-height: 1.9;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-btns { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+
+  .btn {
+    display: inline-block;
+    padding: 0.65rem 1.4rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    border-radius: 3px;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .btn-primary { background: var(--cyan); color: #0a0e0f; font-weight: 700; border: none; }
+  .btn-primary:hover { background: #fff; }
+  .btn-outline { background: transparent; color: var(--cyan); border: 1px solid var(--cyan); }
+  .btn-outline:hover { background: var(--cyan-glow); }
+
+  /* ABOUT */
+  #about { background: var(--bg2); border-radius: 4px; }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .about-text { font-size: 0.87rem; color: var(--text); line-height: 1.9; }
+  .about-text p + p { margin-top: 1rem; }
+
+  .about-stats { display: flex; flex-direction: column; gap: 1rem; }
+
+  .stat-box {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 1rem 1.2rem;
+  }
+  .stat-num { font-size: 1.5rem; font-weight: 700; color: var(--cyan); line-height: 1; }
+  .stat-label { font-size: 0.7rem; color: var(--text-dim); letter-spacing: 0.08em; margin-top: 0.25rem; }
+
+  /* EXPERIENCE */
+  .exp-item {
+    border-left: 2px solid var(--border);
+    padding-left: 1.5rem;
+    margin-bottom: 2.5rem;
+    position: relative;
+  }
+  .exp-item::before {
+    content: '';
+    position: absolute;
+    left: -5px; top: 6px;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--cyan);
+  }
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 0.25rem;
+  }
+  .exp-role { font-size: 0.95rem; font-weight: 700; color: #fff; }
+  .exp-date { font-size: 0.7rem; color: var(--cyan); opacity: 0.8; white-space: nowrap; }
+  .exp-company { font-size: 0.78rem; color: var(--cyan-dim); margin-bottom: 0.75rem; }
+  .exp-desc { font-size: 0.82rem; color: var(--text-dim); line-height: 1.8; }
+  .exp-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.75rem; }
+  .tag {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    color: var(--cyan);
+    font-size: 0.65rem;
+    padding: 0.2rem 0.55rem;
+    border-radius: 2px;
+    letter-spacing: 0.04em;
+  }
+
+  /* SKILLS */
+  #skills { background: var(--bg2); border-radius: 4px; }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.1rem;
+  }
+  .skill-group {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 1rem 1.1rem;
+  }
+  .skill-group-title {
+    font-size: 0.7rem;
+    color: var(--cyan);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .skill-list { list-style: none; display: flex; flex-direction: column; gap: 0.35rem; }
+  .skill-list li { font-size: 0.78rem; color: var(--text); display: flex; align-items: center; gap: 0.5rem; }
+  .skill-list li::before { content: '▸'; color: var(--cyan); font-size: 0.6rem; }
+
+  /* CONTACT */
+  .contact-box {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+  }
+  .contact-prompt { font-size: 0.78rem; color: var(--text-dim); margin-bottom: 1.5rem; }
+  .contact-email {
+    display: inline-block;
+    font-size: clamp(0.78rem, 3vw, 1rem);
+    color: var(--cyan);
+    text-decoration: none;
+    font-weight: 700;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid var(--cyan);
+    border-radius: 3px;
+    transition: all 0.2s;
+    margin-bottom: 1.5rem;
+    word-break: break-all;
+  }
+  .contact-email:hover { background: var(--cyan-glow); box-shadow: 0 0 20px rgba(0,229,255,0.2); }
+  .contact-note { font-size: 0.7rem; color: var(--text-dim); opacity: 0.6; }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 1.5rem 1rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.68rem;
+    color: var(--text-dim);
+    opacity: 0.5;
+  }
+
+  /* FADE IN */
+  .fade-in { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
+  .fade-in.visible { opacity: 1; transform: none; }
+
+  /* MOBILE BREAKPOINTS */
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+
+    #hero { padding-left: 1.25rem; padding-right: 1.25rem; }
+
+    .about-grid { grid-template-columns: 1fr; }
+
+    .about-stats { flex-direction: row; flex-wrap: wrap; }
+    .stat-box { flex: 1 1 calc(50% - 0.5rem); min-width: 120px; }
+
+    .skills-grid { grid-template-columns: 1fr 1fr; }
+
+    .exp-header { flex-direction: column; gap: 0.2rem; }
+
+    footer { font-size: 0.62rem; }
+  }
+
+  @media (max-width: 380px) {
+    .skills-grid { grid-template-columns: 1fr; }
+    .stat-box { flex: 1 1 100%; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">noah@hansen:~$</div>
+  <ul class="nav-links">
+    <li><a href="#about">about</a></li>
+    <li><a href="#experience">experience</a></li>
+    <li><a href="#skills">skills</a></li>
+    <li><a href="#contact">contact</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" class="mobile-link">about</a>
+  <a href="#experience" class="mobile-link">experience</a>
+  <a href="#skills" class="mobile-link">skills</a>
+  <a href="#contact" class="mobile-link">contact</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-pre">// systems administrator</div>
+  <div class="hero-name">Noah Hansen</div>
+  <div class="hero-title"><span id="typed"></span><span class="cursor"></span></div>
+  <p class="hero-bio">
+    Sysadmin with a passion for enterprise infrastructure, virtualization, and self-hosted homelab environments.
+    I keep systems running, endpoints managed, and servers happy — at work and at home.
+  </p>
+  <div class="hero-btns">
+    <a href="#experience" class="btn btn-primary">view experience</a>
+    <a href="#contact" class="btn btn-outline">get in touch</a>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="fade-in">
+  <div class="section-label">about_me</div>
+  <h2>Who I Am</h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>I'm a Systems Administrator based in Salt Lake City, Utah with a background spanning enterprise IT support, virtualization, endpoint management, and VDI infrastructure.</p>
+      <p>I started my IT career providing help desk support and account management at a large enterprise organization, then transitioned into a dedicated sysadmin role where I work across virtualization, enterprise software deployment, and endpoint management in a production environment.</p>
+      <p>I'm nearly finished with a B.S. in Cybersecurity & Information Assurance at WGU, and I'm passionate about building reliable systems — whether that's diagnosing complex infrastructure issues, packaging and deploying software at scale with Tanium, or managing Hyper-V and VMware environments.</p>
     </div>
-  
-    <footer>
-      <p>&copy; 2025 Noah Hansen. All rights reserved.</p>
-    </footer>
-  
-  </body>
+    <div class="about-stats">
+      <div class="stat-box">
+        <div class="stat-num">3+</div>
+        <div class="stat-label">Years in IT & Technology Roles</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">HV</div>
+        <div class="stat-label">Hyper-V · VMware · Virtualization</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">WGU</div>
+        <div class="stat-label">B.S. Cybersecurity & Info Assurance</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" class="fade-in">
+  <div class="section-label">experience</div>
+  <h2>Work History</h2>
+
+  <div class="exp-item">
+    <div class="exp-header">
+      <div class="exp-role">System Administrator</div>
+      <div class="exp-date">Feb 2026 — Present</div>
+    </div>
+    <div class="exp-company">Deseret Mutual Benefit Administrators (DMBA) · Salt Lake City, UT</div>
+    <div class="exp-desc">
+      Managing enterprise virtualization, VDI infrastructure, and endpoint management at scale. Responsible for VMware vCenter environment health, Omnissa Horizon golden image builds and publishing, Tanium software packaging and deployment, and supporting infrastructure onboarding for new platforms.
+    </div>
+    <div class="exp-tags">
+      <span class="tag">VMware vCenter</span>
+      <span class="tag">Omnissa Horizon</span>
+      <span class="tag">Tanium</span>
+      <span class="tag">Jira</span>
+      <span class="tag">Windows Server</span>
+      <span class="tag">PowerShell</span>
+    </div>
+  </div>
+
+  <div class="exp-item">
+    <div class="exp-header">
+      <div class="exp-role">General Technology Specialist</div>
+      <div class="exp-date">May 2024 — Feb 2026</div>
+    </div>
+    <div class="exp-company">The Church of Jesus Christ of Latter-day Saints · Salt Lake City, UT · Hybrid</div>
+    <div class="exp-desc">
+      Provided help desk support and account management in a large-scale enterprise environment. Assisted users across a hybrid work model, resolving technical issues, managing accounts, and supporting day-to-day IT operations.
+    </div>
+    <div class="exp-tags">
+      <span class="tag">Help Desk</span>
+      <span class="tag">Account Management</span>
+      <span class="tag">IT Support</span>
+      <span class="tag">Hybrid Environment</span>
+    </div>
+  </div>
+
+  <div class="exp-item">
+    <div class="exp-header">
+      <div class="exp-role">Teller</div>
+      <div class="exp-date">Feb 2023 — May 2024</div>
+    </div>
+    <div class="exp-company">America First Credit Union · Full-time</div>
+    <div class="exp-desc">
+      Delivered front-line member services in a fast-paced financial environment. Handled transactions accurately, built member relationships, and developed strong attention to detail and customer communication skills.
+    </div>
+    <div class="exp-tags">
+      <span class="tag">Customer Service</span>
+      <span class="tag">Financial Transactions</span>
+      <span class="tag">Attention to Detail</span>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="fade-in">
+  <div class="section-label">skills</div>
+  <h2>Tools & Technologies</h2>
+  <div class="skills-grid">
+    <div class="skill-group">
+      <div class="skill-group-title">Virtualization</div>
+      <ul class="skill-list">
+        <li>VMware vCenter / ESXi</li>
+        <li>Omnissa Horizon VDI</li>
+        <li>Hyper-V</li>
+        <li>Proxmox VE</li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Endpoint & Systems</div>
+      <ul class="skill-list">
+        <li>Tanium</li>
+        <li>Windows Server</li>
+        <li>Active Directory</li>
+        <li>PowerShell</li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Networking</div>
+      <ul class="skill-list">
+        <li>Tailscale / WireGuard</li>
+        <li>DNS & DHCP</li>
+        <li>VLANs</li>
+        <li>Windows Defender Firewall</li>
+        <li>VPN Administration</li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Scripting & Automation</div>
+      <ul class="skill-list">
+        <li>PowerShell</li>
+        <li>Bash / Shell</li>
+        <li>Python</li>
+        <li>AI Automation</li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Self-Hosted Stack</div>
+      <ul class="skill-list">
+        <li>Jellyfin</li>
+        <li>Sonarr / Radarr</li>
+        <li>Linux (Debian/Ubuntu)</li>
+        <li>NAS / Network Storage</li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Security & Compliance</div>
+      <ul class="skill-list">
+        <li>Endpoint Hardening</li>
+        <li>CompTIA Studies</li>
+        <li>WGU Cybersecurity B.S.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="fade-in">
+  <div class="section-label">contact</div>
+  <h2>Get In Touch</h2>
+  <div class="contact-box">
+    <div class="contact-prompt">// Have a project, opportunity, or just want to talk infrastructure?</div>
+    <a href="mailto:hansenlnoah@gmail.com" class="contact-email">hansenlnoah@gmail.com</a>
+    <div class="contact-note">Based in Salt Lake City, Utah · Open to opportunities</div>
+  </div>
+</section>
+
+<footer>
+  <div>noah@hansen:~$ <span style="color:var(--cyan)">echo</span> "built with too much caffeine and not enough sleep"</div>
+</footer>
+
+<script>
+  // Typing effect
+  const phrases = [
+    'VMware · Tanium · Horizon VDI',
+    'Proxmox · Jellyfin · Tailscale',
+    'PowerShell · Bash · Python',
+    'Breaking things. Then fixing them.'
+  ];
+  let pi = 0, ci = 0, deleting = false;
+  const el = document.getElementById('typed');
+  function type() {
+    const phrase = phrases[pi];
+    if (!deleting) {
+      el.textContent = phrase.slice(0, ++ci);
+      if (ci === phrase.length) { deleting = true; setTimeout(type, 2000); return; }
+    } else {
+      el.textContent = phrase.slice(0, --ci);
+      if (ci === 0) { deleting = false; pi = (pi + 1) % phrases.length; }
+    }
+    setTimeout(type, deleting ? 40 : 70);
+  }
+  type();
+
+  // Hamburger menu
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+  document.querySelectorAll('.mobile-link').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+    });
+  });
+
+  // Fade in on scroll
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+</script>
+</body>
 </html>
